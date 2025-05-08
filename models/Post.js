@@ -12,10 +12,14 @@ const postSchema = new mongoose.Schema(
             required: [true, 'Post content is required'],
         },
         author: {
-            //   type: mongoose.Schema.Types.ObjectId,
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true,
+        },
+        category: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Category',
+            required: true, // optional if you want to allow posts without a category
         },
         tags: [
             {

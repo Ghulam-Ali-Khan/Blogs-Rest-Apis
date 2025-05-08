@@ -1,5 +1,4 @@
 import Post from '../models/Post.js';
-import catchAsync from '../utils/catchAsync.js';
 
 // Create a new post
 export const createPost = async (req, res) => {
@@ -16,14 +15,26 @@ export const createPost = async (req, res) => {
 
 // Get all posts
 export const getAllPosts = async (req, res) => {
-  const posts = await Post.find();
+  const { search, category } = req.query;
 
-  // Using MongoDB's countDocuments() method for efficient counting
-  const count = await Post.countDocuments();
+  let filter = {};
+
+  // Title search (case-insensitive)
+  if (search) {
+    filter.title = { $regex: search, $options: 'i' };
+  }
+
+  // Filter by category ObjectId if provided
+  if (category) {
+    filter.category = category;
+  }
+
+  const posts = await Post.find(filter).populate('category').populate('author');
+  const count = await Post.countDocuments(filter);
 
   res.status(200).json({
     success: true,
-    count, // Efficient count from MongoDB
+    count,
     data: posts,
   });
 };

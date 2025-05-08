@@ -1,11 +1,15 @@
 import * as yup from 'yup';
 
 export const createPostSchema = yup.object().shape({
+  category: yup
+    .string()
+    .required('Category is required'),
+    
   title: yup
     .string()
     .required('Title is required')
     .min(3, 'Title must be at least 3 characters'),
-    
+
   content: yup
     .string()
     .required('Content is required')
