@@ -1,7 +1,7 @@
-import  { Router } from 'express';
+import { Router } from 'express';
 import { deleteUser, getAllUsers, getUserById, login, register, updateUser } from '../controllers/auth.controller.js';
 
-import validate from '../utils/validate.js';
+import validate from '../middlewares/validateRequestMiddleware.js';
 import { loginSchema, registerSchema } from '../validators/auth.validations.js';
 import catchAsync from '../utils/catchAsync.js';
 

@@ -7,7 +7,7 @@ import {
   deletePost,
 } from '../controllers/post.controller.js';
 
-import validate from '../utils/validate.js';
+import validate from '../middlewares/validateRequestMiddleware.js';
 import { createPostSchema, updatePostSchema } from '../validators/post.validations.js';
 import catchAsync from '../utils/catchAsync.js';
 

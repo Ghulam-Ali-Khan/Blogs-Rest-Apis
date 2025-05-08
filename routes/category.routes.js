@@ -1,4 +1,4 @@
-import  { Router } from 'express';
+import { Router } from 'express';
 import {
   createCategory,
   getAllCategories,
@@ -7,7 +7,7 @@ import {
   deleteCategory,
 } from '../controllers/category.controller.js';
 
-import validate from '../utils/validate.js';
+import validate from '../middlewares/validateRequestMiddleware.js';
 import { createCategorySchema, updateCategorySchema } from '../validators/category.validations.js';
 import catchAsync from '../utils/catchAsync.js';
 
